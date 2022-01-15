@@ -7,12 +7,11 @@ trigger:
 - none
 
 pool:
-  vmImage: 'SMKR-Self-Hosted-Agent' #Testing with self-hosted agent
+  vmImage: 'Self Hosted Agent' #Testing with self-hosted agent
 
 steps:
-- task: TerraformInstaller@0
-  inputs:
-    terraformVersion: 'latest'
+- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+  displayName: 'Use Terraform latest'
 
 - task: TerraformTaskV2@2
   displayName: 'terraform-init'
@@ -21,10 +20,10 @@ steps:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
     backendServiceArm: 'MANI''s AZURE (12c0d075-059f-4523-8432-5eee63b9ac55)'
-    backendAzureRmResourceGroupName: 'testRG'
-    backendAzureRmStorageAccountName: 'teststrgmrng'
-    backendAzureRmContainerName: 'test-container'
-    backendAzureRmKey: 'test-key'
+    backendAzureRmResourceGroupName: 'mani_RG'
+    backendAzureRmStorageAccountName: 'manistrg1501'
+    backendAzureRmContainerName: 'mani-container'
+    backendAzureRmKey: 'manikey'
 
 - task: TerraformTaskV2@2
   displayName: 'terraform-validate'
