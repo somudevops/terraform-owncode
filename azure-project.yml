@@ -9,9 +9,8 @@ trigger:
 pool: SMKR-Self-Hosted-Agent #Testing with self-hosted agent
 
 steps:
-- task: TerraformInstaller@0
-  inputs:
-    terraformVersion: 'latest'
+- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+  displayName: 'Use Terraform latest'
 
 - task: TerraformTaskV2@2
   displayName: 'terraform-init'
