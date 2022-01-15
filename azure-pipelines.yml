@@ -20,11 +20,11 @@ steps:
     provider: 'azurerm'
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-    backendServiceArm: 'Reddy''s Azure (4012f1b9-10e6-4fd3-bd77-a0d45b5a62f9)'
-    backendAzureRmResourceGroupName: 'newprojecr-RG'
-    backendAzureRmStorageAccountName: 'newprojectstrg'
-    backendAzureRmContainerName: 'new-container'
-    backendAzureRmKey: 'new-key'
+    backendServiceArm: 'MANI''s AZURE (12c0d075-059f-4523-8432-5eee63b9ac55)'
+    backendAzureRmResourceGroupName: 'testRG'
+    backendAzureRmStorageAccountName: 'teststrgmrng'
+    backendAzureRmContainerName: 'test-container'
+    backendAzureRmKey: 'test-key'
 
 - task: TerraformTaskV2@2
   displayName: 'terraform-validate'
@@ -39,12 +39,12 @@ steps:
     provider: 'azurerm'
     command: 'plan'
     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-    environmentServiceNameAzureRM: 'Reddy''s Azure (4012f1b9-10e6-4fd3-bd77-a0d45b5a62f9)'
+    environmentServiceNameAzureRM: 'MANI''s AZURE (12c0d075-059f-4523-8432-5eee63b9ac55)'
 
 - task: TerraformTaskV2@2
   displayName: 'terraform-apply'
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-    environmentServiceNameAzureRM: 'Reddy''s Azure (4012f1b9-10e6-4fd3-bd77-a0d45b5a62f9)'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/apply'
+    environmentServiceNameAzureRM: 'MANI''s AZURE (12c0d075-059f-4523-8432-5eee63b9ac55)'
