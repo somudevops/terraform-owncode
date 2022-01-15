@@ -7,7 +7,7 @@ trigger:
 - none
 
 pool:
-  vmImage: 'WeltgeistSMKR-Self-Hosted-Agent' #Testing with self-hosted agent
+  vmImage: 'SMKR-Self-Hosted-Agent' #Testing with self-hosted agent
 
 steps:
 - task: TerraformInstaller@0
