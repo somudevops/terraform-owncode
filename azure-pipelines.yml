@@ -1,0 +1,50 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTaskV2@2
+  displayName: 'terraform-init'
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+    backendServiceArm: 'Reddy''s Azure (4012f1b9-10e6-4fd3-bd77-a0d45b5a62f9)'
+    backendAzureRmResourceGroupName: 'newprojecr-RG'
+    backendAzureRmStorageAccountName: 'newprojectstrg'
+    backendAzureRmContainerName: 'new-container'
+    backendAzureRmKey: 'new-key'
+
+- task: TerraformTaskV2@2
+  displayName: 'terraform-validate'
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+
+- task: TerraformTaskV2@2
+  displayName: 'terraform-plan'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+    environmentServiceNameAzureRM: 'Reddy''s Azure (4012f1b9-10e6-4fd3-bd77-a0d45b5a62f9)'
+
+- task: TerraformTaskV2@2
+  displayName: 'terraform-apply'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+    environmentServiceNameAzureRM: 'Reddy''s Azure (4012f1b9-10e6-4fd3-bd77-a0d45b5a62f9)'
